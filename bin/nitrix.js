@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var util = require('util');
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var path = require('path');
@@ -12,10 +13,10 @@ var app = args[0];
 function start(app) {
   node = spawn('node', [app]);
   node.stdout.on('data', function(data){
-    console.log(data);
+    console.log(data.toString());
   });
   node.stderr.on('data', function(data){
-    console.error(data);
+    console.error(data.toString());
   });
   node.on('exit', function(code, signal){
     start();
