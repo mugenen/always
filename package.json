@@ -18,6 +18,8 @@
     "vows":"0.5.13",
     "should":"0.3.2"
   },
+  "bin": { "nitrix" : "./bin/nitrix.js" },
+  "preferGlobal" : "true",
   "scripts":{
     "test":"vows test/*.test.js --spec"
   }
