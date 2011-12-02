@@ -1,0 +1,24 @@
+{
+  "author":"Edward Hotchkiss <e@ingk.com>",
+  "name":"nitrix",
+  "description":"Run a NodeJS process Forever",
+  "version":"0.0.1",
+  "repository":{
+    "type":"git",
+    "url":"git://github.com/edwardhotchkiss/nitrix.git"
+  },
+  "keywords":["nitrix","process","forever","error","uncaught"],
+  "main":"./lib/nitrix",
+  "engines":{
+    "node":">= 0.4.12 < 0.8.0"
+  },
+  "dependencies":{
+  },
+  "devDependencies":{
+    "vows":"0.5.13",
+    "should":"0.3.2"
+  },
+  "scripts":{
+    "test":"vows test/*.test.js --spec"
+  }
+}
