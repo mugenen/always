@@ -10,7 +10,9 @@ var fs = require('fs'),
 
 // main node's child event loop
 function start(app) {
+  console.log('Nitrix >'.magenta+' starting Node...'.yellow);
   node = spawn('node', [app]);
+  console.log('Nitrix >'.magenta+' Node started'.yellow);
   node.stdout.on('data', function(data){
     console.log(data.toString());
   });
@@ -22,7 +24,7 @@ function start(app) {
   });
   node.stderr.on('data', function (data) {
     if (/^execvp\(\)/.test(data)) {
-      console.log('Failed to start child process.');
+      console.log('Failed to restart child process.');
     }
   });
 };
