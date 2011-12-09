@@ -48,6 +48,7 @@ vows.describe('nitrix vows setup & teardown')
 .addBatch({
   'when running `nitrix start app.js`':{
     topic:function() {
+      var callback = function(){};
       var args = [
         path.join(__dirname, '..', 'bin', 'nitrix'),
         path.join(__dirname, '..', 'test', 'app')
@@ -62,13 +63,10 @@ vows.describe('nitrix vows setup & teardown')
         stderr += data;
       });
       child.once('exit', function(exitCode) {
-        setTimeout(function() {
-          return exitCode;
-        }, 200);
+        return callback(null, exitCode, stdout, stderr);
       });
     },
     'there should be no errors':function(error, exitCode, stdout, stderr){
-      console.log(arguments);
       console.log(error, exitCode, stdout, stderr);
       assert.isNull(error);
     }
