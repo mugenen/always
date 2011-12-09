@@ -9,9 +9,13 @@ var fs = require('fs'),
   commander = require('commander'),
   args = process.argv.slice(2);
 
-// main node's child event loop
-function start(app) {
-  console.log('Nitrix >'.magenta+' starting Node...'.yellow);
+/*!
+  @method start
+  @param {String} app NodeJS file
+*/
+
+function start(app, status){
+  console.log(status);
   node = spawn('node', [app]);
   console.log('Nitrix >'.magenta+' Node started'.yellow);
   node.stdout.on('data', function(data){
@@ -30,14 +34,21 @@ function start(app) {
   });
 };
 
-// listen for uncaughtExceptions
+function restart(app){
+  start(app, 'Nitrix >'.magenta+' Restarting Node...'.yellow);
+}
+
+/*!
+  listen for uncaughtException(s) then restart
+*/
+
 process.on('uncaughtException', function(error){
   console.error('App error, restarting!');
   console.error(error.stack);
-  start();
+  start(args[0], 'Nitrix >'.magenta+' Starting Node...'.yellow);
 });
 
 // switch
-start(app);
+start(args[0]);
 
 /* EOF */
