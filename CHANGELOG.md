@@ -1,6 +1,11 @@
 
 ## CHANGELOG
 
+### Version 0.0.3 (master, in progress)
+
+- Log stdout to ~/.nitrix/[pid].error.log
+- Log stderr to ~/.nitrix/[pid].out.log
+
 ### Version 0.0.2
 
 - Removed help options that are for later implementation
