@@ -11,6 +11,7 @@ var fs = require('fs'),
     path = require('path'),
     program = require('commander'),
     spawn = require('child_process').spawn,
+    args = process.argv;
     app = null;
 
 /*!
@@ -39,11 +40,16 @@ program
       logger('Starting ' +app.green +' with Node');
       start();
     } else {
-      logger('No file specified');
+      logger('No file specified'.red);
     }
   });
 
-program.parse(process.argv);
+// no args?
+if (args.length === 2) {
+  logger('No file specified!'.red);
+} else {
+  program.parse(args);
+};
 
 /*!
   @method logger
@@ -64,13 +70,13 @@ function exists(file){
   try {
     var stats = fs.lstatSync(file);
     if (stats.isDirectory()) {
-      logger(file+' is a directory');
+      logger(file+' is a directory'.red);
       return false;
     } else {
       return true;
     }
   } catch (error) {
-    logger(error);  
+    logger(error.toString().red);  
     return false;
   }
 };
