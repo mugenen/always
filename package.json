@@ -2,7 +2,7 @@
   "author":"Edward Hotchkiss <e@ingk.com>",
   "name":"nitrix",
   "description":"Run a NodeJS process Forever. Restart on File changes & crashes with piping to stdout or logs (both with --verbose)",
-  "version":"0.0.1",
+  "version":"0.0.2",
   "repository":{
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/nitrix.git"
