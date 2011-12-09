@@ -72,6 +72,7 @@ vows.describe('nitrix vows setup & teardown')
         exitCode = code;
       });
       setTimeout(function() {
+        child.kill();
         self.callback(null, exitCode, stdout, stderr);
       }, 300);
     },
