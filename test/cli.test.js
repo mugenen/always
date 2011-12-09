@@ -22,7 +22,9 @@ var testApp =
   Vows
  */
 
-vows.describe('nitrix vows setup & teardown').addBatch({
+vows.describe('nitrix vows setup & teardown')
+
+.addBatch({
   'when creating file /test/app.js':{
     topic:function(){
       fs.writeFile(__dirname+'/app.js', testApp, 'utf8', this.callback);
@@ -31,7 +33,9 @@ vows.describe('nitrix vows setup & teardown').addBatch({
       assert.equal(typeof(error), 'undefined');
     }
   }
-}).addBatch({
+})
+
+.addBatch({
   'when removing /test/app.js':{
     topic:function(){
       fs.unlink(__dirname+'/app.js', this.callback);
