@@ -1,7 +1,7 @@
 
 # nitrix
 
-A CLI tool to run a NodeJS process Forever. Restart on File changes & crashes with piping to stdout
+> A CLI tool to run a NodeJS process Forever Restart on File changes & crashes with piping to stdout
 
 ## Installation
 
