@@ -58,7 +58,7 @@ function logger(str){
 
 function exists(file){
   try {
-    var stats = Fs.lstatSync(file);
+    var stats = fs.lstatSync(file);
     if (stats.isDirectory()) {
       logger(file+' is a directory');
       return false;
@@ -82,14 +82,14 @@ function start(){
   } else {
     node = spawn('node', [app]);
     node.stdout.on('data', function(data){
-      console.log(data.toString());
+      logger(data.toString());
     });
     node.stderr.on('data', function(data){
-      console.error(data.toString());
+      logger(data.toString());
     });
     node.stderr.on('data', function (data) {
       if (/^execvp\(\)/.test(data)) {
-        console.log('Failed to restart child process.');
+        logger('Failed to restart child process.');
       }
     });
     node.on('exit', function (code, signal) {
