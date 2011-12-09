@@ -83,12 +83,12 @@ function npm(env) {
 */
 
 function logger(str, isError){
+  console.log(str);
   isError = isError || false;
-  console.log('[nitrix]'.magenta+' '+str);
   if (isError) {
-    
+    console.log('[nitrix]'.magenta+' '+str.red);
   } else {
-    
+    console.log('[nitrix]'.magenta+' '+str);
   }
 };
 
@@ -121,13 +121,13 @@ function exists(file){
   try {
     var stats = fs.lstatSync(file);
     if (stats.isDirectory()) {
-      logger(file+' is a directory'.red, true);
+      logger(file+' is a directory', true);
       return false;
     } else {
       return true;
     }
   } catch (error) {
-    logger(error.toString().red);  
+    logger(error.toString(), true);  
     return false;
   }
 };
@@ -149,7 +149,7 @@ function start(){
       logger(data.toString().split('/\n')[0]);
     });
     node.stderr.on('data', function(data){
-      logger(data.toString().red, true);
+      logger(data.toString(), true);
     });
     node.stderr.on('data', function (data) {
       if (/^execvp\(\)/.test(data)) {
@@ -204,15 +204,15 @@ process.on('SIGINT', function(){
 });
 
 process.on('SIGTERM', function(){
-  logger(app.green+' killed', true);
+  logger(app.green+' killed',true);
   kill();
   process.exit(0);
 });
 
 process.on('uncaughtException', function(error){
-  logger(error.toString().red, true);
-  logger(error.stack.toString().red, true);
-  logger('Restarting ' +app.green +' with Node');
+  logger(error.toString(), true);
+  logger(error.stack.toString(), true);
+  logger('Restarting '+app.green+' with Node');
   restart();
 });
 

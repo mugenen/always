@@ -18,7 +18,7 @@ var testApp =
   'var app = http.createServer(function(request, response) {\n'+
   '  response.end(\'hi\');\n'+
   '});\n'+
-  'app.listen(8000)';
+  'app.listen(8081)';
 
 /*!
   Spawn Config
@@ -73,7 +73,7 @@ vows.describe('nitrix vows setup & teardown')
       });
       setTimeout(function() {
         self.callback(null, exitCode, stdout, stderr);
-      }, 200);
+      }, 300);
     },
     'there should be no errors':function(error, exitCode, stdout, stderr){
       assert.isNull(error);
