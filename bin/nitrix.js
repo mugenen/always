@@ -11,7 +11,7 @@ var fs = require('fs'),
     path = require('path'),
     program = require('commander'),
     spawn = require('child_process').spawn;
-
+    app = null;
 /*!
   Commander
 */
@@ -25,13 +25,8 @@ program
   .command('start [app]')
   .description('start [app] with nitrix/node')
   .action(function(env){
-    console.log('[Nitrix]'.magenta+' Starting ' +'%s'.green +' with NodeJS', env);
-  });
-
-program
-  .command('*')
-  .action(function(env){
-    console.log('Nitrix >'.magenta+' Node started'.yellow);
+    app = env;
+    start(app, var str = '[Nitrix]'.magenta+' Starting ' +app.green +' with Node');
   });
 
 program.parse(process.argv);
@@ -41,8 +36,7 @@ program.parse(process.argv);
   @param {String} app NodeJS file
 */
 
-function start(app, status){
-  console.log(status);
+function start(){
   node = spawn('node', [app]);
   node.stdout.on('data', function(data){
     console.log(data.toString());
@@ -61,13 +55,14 @@ function start(app, status){
 };
 
 /*!
-  listen for uncaughtException(s) then restart
+  listen for uncaughtException(s)
+  on exception, restart
 */
 
 process.on('uncaughtException', function(error){
-  console.error('App error, restarting!'.magenta);
+  start(app, var str = '[Nitrix]'.magenta+' Retarting ' +app.green +' with Node');
   console.error(error.stack);
-  start(args[0], 'Nitrix >'.magenta+' Starting Node...'.yellow);
+  start();
 });
 
 /* EOF */
