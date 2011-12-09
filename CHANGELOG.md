@@ -9,6 +9,8 @@
 	* Test `nitrix` cli
 	* Teardown
 - Added .gitignore
+- Log stdout to /tmp/[pid].error.log
+- Log stderr to /tmp/[pid].out.log
 
 ### Version 0.0.1 (initial version)
 

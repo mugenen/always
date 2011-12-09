@@ -14,8 +14,7 @@ var fs = require('fs'),
     args = process.argv,
     previousEvent,
     node = null,
-    app = null,
-    pid = null
+    app = null;
 
 // processes managed by nitrix
 var managed = [
@@ -67,8 +66,14 @@ if (args.length === 2) {
   Log methods with nice highlighting
 */
 
-function logger(str){
+function logger(str, isError){
+  isError = isError || false;
   console.log('[nitrix]'.magenta+' '+str);
+  if (isError) {
+    
+  } else {
+    
+  }
 };
 
 /*!
@@ -100,7 +105,7 @@ function exists(file){
   try {
     var stats = fs.lstatSync(file);
     if (stats.isDirectory()) {
-      logger(file+' is a directory'.red);
+      logger(file+' is a directory'.red, true);
       return false;
     } else {
       return true;
@@ -121,22 +126,23 @@ function start(){
     return false;
   } else {
     node = spawn('node', [app]);
+    console.log(node.pid);
     // watch node child process file
     monitor(app);
     node.stdout.on('data', function(data){
       logger(data.toString().split('/\n')[0]);
     });
     node.stderr.on('data', function(data){
-      logger(data.toString());
+      logger(data.toString().red, true);
     });
     node.stderr.on('data', function (data) {
       if (/^execvp\(\)/.test(data)) {
-        logger('failed to restart child process.');
+        logger('failed to restart child process.', true);
       }
     });
     node.on('exit', function (code, signal) {
       if (signal == 'SIGUSR2') {
-        logger('signal interuption, restarting '+app.green);
+        logger('signal interuption, restarting '+app.green, true);
       } else {
         //...
       }
@@ -176,20 +182,20 @@ process.on('exit', function(code){
 
 // CTRL+C
 process.on('SIGINT', function(){
-  logger('Killing '+app.green);
+  logger('Killing '+app.green, true);
   kill();
   process.exit(0);
 });
 
 process.on('SIGTERM', function(){
-  logger(app.green+' killed');
+  logger(app.green+' killed', true);
   kill();
   process.exit(0);
 });
 
 process.on('uncaughtException', function(error){
-  logger(error.toString().red);
-  logger(error.stack.toString().red);
+  logger(error.toString().red, true);
+  logger(error.stack.toString().red, true);
   logger('Restarting ' +app.green +' with Node');
   restart();
 });

@@ -4,8 +4,11 @@
  */
 
 var fs = require('fs'),
+    path = require('path'),
     vows = require('vows'),
-    assert = require('assert');
+    assert = require('assert'),
+    macros = require('./macros/macros');
+    spawn = require('child_process').spawn;
 
 /*!
   Setup
@@ -18,11 +21,20 @@ var testApp =
   '});\n'+
   'app.listen(8000)';
 
+var args = [
+  path.join(__dirname, '..', 'bin', 'nitrix'),
+  path.join(__dirname, '..', 'test', 'app')
+];
+
 /*!
   Vows
  */
 
 vows.describe('nitrix vows setup & teardown')
+
+/*!
+  Setup
+ */
 
 .addBatch({
   'when creating file /test/app.js':{
@@ -34,6 +46,27 @@ vows.describe('nitrix vows setup & teardown')
     }
   }
 })
+
+/*!
+  Test nitrix CLI
+ */
+
+.addBatch({
+  // modified from /github/nodejitsu/forever/test/helpers/
+  'when running `nitrix start app.js`':{
+    topic:function(callback){
+      macros.spawn(args, this.callback);
+    },
+    'there should be no errors':function(error, exitCode, stdout, stderr){
+      console.log(error, exitCode, stdout, stderr);
+      assert.isNull(error);
+    }
+  }
+})
+
+/*!
+  Teardown
+ */
 
 .addBatch({
   'when removing /test/app.js':{
