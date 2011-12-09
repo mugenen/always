@@ -7,7 +7,6 @@ var fs = require('fs'),
     path = require('path'),
     vows = require('vows'),
     assert = require('assert'),
-    macros = require('./macros/macros');
     spawn = require('child_process').spawn;
 
 /*!
@@ -64,7 +63,7 @@ vows.describe('nitrix vows setup & teardown')
       });
       child.once('exit', function(exitCode) {
         setTimeout(function() {
-          self.callback(null, exitCode, stdout, stderr);
+          return exitCode;
         }, 200);
       });
     },
