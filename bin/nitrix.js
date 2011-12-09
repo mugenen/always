@@ -92,7 +92,7 @@ function start(){
   } else {
     node = spawn('node', [app]);
     node.stdout.on('data', function(data){
-      logger(data.toString());
+      logger(data.toString().split('/\n')[0]);
     });
     node.stderr.on('data', function(data){
       logger(data.toString());
@@ -116,7 +116,7 @@ function start(){
 
 /*!
   listen for error instance(s)
-  on error, ALWAYS restart
+  on error, generally restart.
 */
 
 process.on('exit', function(code){
@@ -135,7 +135,7 @@ process.on('SIGTERM', function(){
 });
 
 process.on('uncaughtException', function(error){
-  console.error(error.stack);
+  logger(error.stack.toString().red);
   logger('Restarting ' +app.green +' with Node');
   start();
 });
