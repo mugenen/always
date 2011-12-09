@@ -1,13 +1,33 @@
 #!/usr/bin/env node
 
+/*!
+  Module dependencies
+*/
+
 require('colors');
 
 var fs = require('fs'),
-  util = require('util'),
-  path = require('path'),
-  spawn = require('child_process').spawn,
-  commander = require('commander'),
-  args = process.argv.slice(2);
+    util = require('util'),
+    path = require('path'),
+    program = require('commander'),
+    spawn = require('child_process').spawn;
+
+/*!
+  Commander
+*/
+
+program
+  .version('0.0.1')
+  .option('-o, --output <path/log>', 'stream output to a log file [./my/app.log]')
+  .option('-v, --verbose', 'verbose node output even with piped logging')
+
+program
+  .command('*')
+  .action(function(env){
+    console.log('Nitrix >'.magenta+' Node started'.yellow);
+  });
+
+program.parse(process.argv);
 
 /*!
   @method start
@@ -17,7 +37,6 @@ var fs = require('fs'),
 function start(app, status){
   console.log(status);
   node = spawn('node', [app]);
-  console.log('Nitrix >'.magenta+' Node started'.yellow);
   node.stdout.on('data', function(data){
     console.log(data.toString());
   });
@@ -34,21 +53,14 @@ function start(app, status){
   });
 };
 
-function restart(app){
-  start(app, 'Nitrix >'.magenta+' Restarting Node...'.yellow);
-}
-
 /*!
   listen for uncaughtException(s) then restart
 */
 
 process.on('uncaughtException', function(error){
-  console.error('App error, restarting!');
+  console.error('App error, restarting!'.magenta);
   console.error(error.stack);
   start(args[0], 'Nitrix >'.magenta+' Starting Node...'.yellow);
 });
-
-// switch
-start(args[0]);
 
 /* EOF */
