@@ -34,3 +34,19 @@ $ => [0] app.js 00:00:04
 ```
 
 ### Usage (Advanced)
+
+
+  Usage: nitrix.js [options] [command]
+
+  Commands:
+
+    start [app]
+    start [app] with nitrix/node
+
+  Options:
+
+    -h, --help               output usage information
+    -V, --version            output the version number
+    -l, --list               list all processes being managed
+    -o, --output <path/log>  stream output to a log file [./my/app.log]
+    -v, --verbose            verbose node output even with piped logging
