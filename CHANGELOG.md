@@ -4,13 +4,11 @@
 ### Version 0.0.2
 
 - Removed help options that are for later implementation
-- Added a test suite
+- Added a complete automated vows test suite
 	* Setup
-	* Test `nitrix` cli
+	* Test `nitrix` CLI
 	* Teardown
 - Added .gitignore
-- Log stdout to /tmp/[pid].error.log
-- Log stderr to /tmp/[pid].out.log
 
 ### Version 0.0.1 (initial version)
 
