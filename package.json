@@ -20,6 +20,10 @@
     "vows":"0.6.0"
   },
   "bin": { "nitrix" : "./bin/nitrix.js" },
+  "licenses":[{
+    "type":"MIT",
+    "url":"http://github.com/edwardhotchkiss/nitrix/LICENSE"
+  }],
   "preferGlobal" : "true",
   "scripts":{
     "test":"vows test/*.test.js --spec"

@@ -21,13 +21,22 @@ var testApp =
   'app.listen(8000)';
 
 /*!
+  Spawn Config
+ */
+
+var args = [
+  path.join(__dirname, '..', 'bin', 'nitrix.js'),
+  path.join(__dirname, '..', 'test', 'app.js')
+];
+
+/*!
   Vows
  */
 
 vows.describe('nitrix vows setup & teardown')
 
 /*!
-  Setup
+  Vows Setup
  */
 
 .addBatch({
@@ -48,27 +57,35 @@ vows.describe('nitrix vows setup & teardown')
 .addBatch({
   'when running `nitrix start app.js`':{
     topic:function() {
-      var callback = function(){};
-      var args = [
-        path.join(__dirname, '..', 'bin', 'nitrix'),
-        path.join(__dirname, '..', 'test', 'app')
-      ];
+      var self = this;
       var child = spawn('node', args),
         stdout = '',
         stderr = '';
+        exitCode = 0;
       child.stdout.on('data', function(data) {
         stdout += data;
       });
       child.stderr.on('data', function(data) {
         stderr += data;
       });
-      child.once('exit', function(exitCode) {
-        return callback(null, exitCode, stdout, stderr);
+      child.on('exit', function(code) {
+        exitCode = code;
       });
+      setTimeout(function() {
+        self.callback(null, exitCode, stdout, stderr);
+      }, 200);
     },
     'there should be no errors':function(error, exitCode, stdout, stderr){
-      console.log(error, exitCode, stdout, stderr);
       assert.isNull(error);
+    },
+    'the exit status code should be 0 (false for issues)':function(error, exitCode, stdout, stderr){
+      assert.equal(exitCode, 0);
+    },
+    'stdout should not be an empty value':function(error, exitCode, stdout, stderr){
+      assert.notEqual(stdout, '');
+    },
+    'stderr should be an empty value':function(error, exitCode, stdout, stderr){
+      assert.equal(stderr, '');
     }
   }
 })

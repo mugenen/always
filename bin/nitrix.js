@@ -25,8 +25,8 @@ var managed = [
 */
 
 program
-  .version('0.0.1')
-
+  .version('0.0.2')
+    
 program
   .command('start [app]')
   .description('start [app] with nitrix/node')
@@ -37,8 +37,9 @@ program
       startTime : new Date().getTime()
     }
     managed.push(obj);
-    app = env;
-    logger('sarting ' +app.green +' with Node');
+    // npm test
+    app = npm(env);
+    logger('sarting '+app.green +' with Node');
     start();
   });
 
@@ -46,7 +47,8 @@ program
   .command('*')
   .action(function(env){
     if (env){
-      app = env;
+      // npm test
+      app = npm(env);
       logger('starting ' +app.green +' with Node');
       start();
     } else {
@@ -59,6 +61,20 @@ if (args.length === 2) {
   logger('no file specified!'.red);
 } else {
   program.parse(args);
+};
+
+/*!
+  @method npm
+  Test for npm test being used,
+  if so; format the string.
+ */
+
+function npm(env) {
+  if (new RegExp(/test/i).test(env)){
+    return env;
+  } else {
+    return __dirname+'./'+env;
+  }
 };
 
 /*!
@@ -88,7 +104,7 @@ function monitor(){
        the app firing twice on each edit:
         => https://github.com/joyent/node/issues/1986
   */
-  fs.watch(__dirname+'/'+app, { interval:1 }, function(event, filename){
+  fs.watch(app, { interval:1 }, function(event, filename){
     if (event === 'change')
       logger(app.green+' has changed, restarting');
       restart();
@@ -157,7 +173,7 @@ function start(){
 */
 
 function kill(){
-  fs.unwatchFile(__dirname+'/'+app);
+  fs.unwatchFile(app);
   node && node.kill();
 };
 
