@@ -12,6 +12,7 @@ var fs = require('fs'),
     program = require('commander'),
     spawn = require('child_process').spawn,
     app = null;
+
 /*!
   Commander
 */
@@ -26,7 +27,6 @@ program
   .description('start [app] with nitrix/node')
   .action(function(env){
     app = env;
-    start();
     logger('Starting ' +app.green +' with Node');
     start();
   });
@@ -34,9 +34,13 @@ program
 program
   .command('*')
   .action(function(env){
-    app = env;
-    logger('Starting ' +app.green +' with Node');
-    start();
+    if (env){
+      app = env;
+      logger('Starting ' +app.green +' with Node');
+      start();
+    } else {
+      logger('No file specified');
+    }
   });
 
 program.parse(process.argv);
@@ -105,9 +109,24 @@ function start(){
 };
 
 /*!
-  listen for uncaughtException(s)
-  on exception, restart
+  listen for error instance(s)
+  on error, ALWAYS restart
 */
+
+process.on('exit', function(code){
+  //...
+});
+
+// CTRL+C
+process.on('SIGINT', function(){
+  logger('Killing '+app.green);
+  process.exit(0);
+});
+
+process.on('SIGTERM', function(){
+  logger(app.green+' killed');
+  process.exit(0);
+});
 
 process.on('uncaughtException', function(error){
   console.error(error.stack);
