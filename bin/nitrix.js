@@ -30,7 +30,7 @@ program
   .description('start [app] with nitrix/node')
   .action(function(env){
     app = env;
-    logger('Starting ' +app.green +' with Node');
+    logger('sarting ' +app.green +' with Node');
     start();
   });
 
@@ -39,16 +39,16 @@ program
   .action(function(env){
     if (env){
       app = env;
-      logger('Starting ' +app.green +' with Node');
+      logger('starting ' +app.green +' with Node');
       start();
     } else {
-      logger('No file specified'.red);
+      logger('no file specified'.red);
     }
   });
 
 // no args?
 if (args.length === 2) {
-  logger('No file specified!'.red);
+  logger('no file specified!'.red);
 } else {
   program.parse(args);
 };
@@ -59,7 +59,7 @@ if (args.length === 2) {
 */
 
 function logger(str){
-  console.log('[Nitrix]'.magenta+' '+str);
+  console.log('[nitrix]'.magenta+' '+str);
 };
 
 /*!
@@ -68,7 +68,7 @@ function logger(str){
 */
 
 function watcher(){
-  fs.watch(__dirname+'/'+app, { persistent:true, interval:1000 }, function(event, filename){
+  fs.watch(__dirname+'/'+app, { persistent:false, interval:1 }, function(event, filename){
     if (event === 'change') {
       logger(app.green+' has changed, restarting');
       restart();
@@ -116,17 +116,14 @@ function start(){
     });
     node.stderr.on('data', function (data) {
       if (/^execvp\(\)/.test(data)) {
-        logger('Failed to restart child process.');
+        logger('failed to restart child process.');
       }
     });
     node.on('exit', function (code, signal) {
       if (signal == 'SIGUSR2') {
-        logger('Signal interuption, restarting '+app.green);
-        restart();
+        logger('signal interuption, restarting '+app.green);
       } else {
-        console.log(code, signal);
-        logger('Error, restarting '+app.green)
-        restart();  
+        //...
       }
     });
   };
@@ -134,10 +131,12 @@ function start(){
 
 /*!
   @method kill
+  Unwatch file, then ->
   Try to kill node process
 */
 
 function kill(){
+  fs.unwatchFile(__dirname+'/'+app);
   node && node.kill();
 };
 
