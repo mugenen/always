@@ -22,6 +22,13 @@ program
   .option('-v, --verbose', 'verbose node output even with piped logging')
 
 program
+  .command('start [app]')
+  .description('start [app] with nitrix/node')
+  .action(function(env){
+    console.log('[Nitrix]'.magenta+' Starting ' +'%s'.green +' with NodeJS', env);
+  });
+
+program
   .command('*')
   .action(function(env){
     console.log('Nitrix >'.magenta+' Node started'.yellow);
