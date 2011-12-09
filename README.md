@@ -7,9 +7,7 @@
 
 ### Motivation
 
-	A NodeJS process management tool that is always up to the latest NodeJS stable version. 
-	Ability to either use it in realtime upon file edits, or in production with logging and
-	optional --verbose output.
+A NodeJS process management tool that is always up to the latest NodeJS stable version. Ability to either use nitrix in **development** with realtime upon live local file edits; or in **production** with logging and optional --verbose output.
 
 ### Installation
 
