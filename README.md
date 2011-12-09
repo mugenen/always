@@ -1,52 +1,52 @@
 
 # Nitrix
 
-## Run a NodeJS process Forever. Restart on File changes & crashes with piping to stdout or logs (both with --verbose)
+A CLI tool to run a NodeJS process Forever. Restart on File changes & crashes with piping to stdout
 
-***
-
-### Motivation
-
-A NodeJS process management tool that is always up to the latest NodeJS stable version. Ability to either use nitrix in **development** with realtime upon live local file edits; or in **production** with logging and optional --verbose output.
-
-### Installation
+## Installation
 
 ```bash
 $ [sudo] npm install nitrix -g
 ```
 
-***
+## Usage
 
-### Basic Usage
-
-**Realtime Development**
+### Realtime Editing & Development
 
 ```bash
 $ nitrix app.js
 ```
 
-**Production**
+## Run Tests
 
-```bash
-$ nitrix start app.js
-$ nitrix list
-$ => [0] app.js 00:00:04
+``` bash
+$ npm test
 ```
 
-### Usage (Advanced)
+[0]: http://ingklabs.com/
+  
+## License (MIT)
 
+Copyright (c) 2011, Edward Hotchkiss.
 
-  Usage: nitrix.js [options] [command]
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
 
-  Commands:
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
 
-    start [app]
-    start [app] with nitrix/node
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-  Options:
+#### Author: [Edward Hotshkiss][0]
 
-    -h, --help               output usage information
-    -V, --version            output the version number
-    -l, --list               list all processes being managed
-    -o, --output <path/log>  stream output to a log file [./my/app.log]
-    -v, --verbose            verbose node output even with piped logging
