@@ -17,12 +17,17 @@ var fs = require('fs'),
     app = null,
     pid = null
 
+// processes managed by nitrix
+var managed = [
+];
+
 /*!
   Commander
 */
 
 program
-  .version('0.0.1')
+  .version('0.0.4')
+  .option('-l, --list', 'list all processes being managed')
   .option('-o, --output <path/log>', 'stream output to a log file [./my/app.log]')
   .option('-v, --verbose', 'verbose node output even with piped logging')
 
@@ -30,6 +35,12 @@ program
   .command('start [app]')
   .description('start [app] with nitrix/node')
   .action(function(env){
+    var obj = {
+      pid : null,
+      id : managed.length,
+      startTime : new Date().getTime()
+    }
+    managed.push(obj);
     app = env;
     logger('sarting ' +app.green +' with Node');
     start();
@@ -69,11 +80,12 @@ function logger(str){
 */
 
 function monitor(){
-  logger('initializing monitor');
-  /* NOTE: there is an open Node 0.6.5 stable bug reporting on strange and
-    unstable fs.watch behavior. Change is triggered twice, at the expense of the app
-    firing twice on each edit.
-    https://github.com/joyent/node/issues/1986 */
+  /* NOTE: 
+    -- there is an open Node 0.6.5 stable bug reporting on strange and
+       unstable fs.watch behavior. Change is triggered twice, at the expense of
+       the app firing twice on each edit:
+        => https://github.com/joyent/node/issues/1986
+  */
   fs.watch(__dirname+'/'+app, { interval:1 }, function(event, filename){
     if (event === 'change')
     logger(app.green+' has changed, restarting');
