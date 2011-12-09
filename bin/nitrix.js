@@ -3,9 +3,10 @@
 require('colors');
 
 var fs = require('fs'),
-  util = require('util');
-  spawn = require('child_process').spawn;
-  path = require('path');
+  util = require('util'),
+  path = require('path'),
+  spawn = require('child_process').spawn,
+  commander = require('commander'),
   args = process.argv.slice(2);
 
 // main node's child event loop
