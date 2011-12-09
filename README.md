@@ -1,5 +1,5 @@
 
-# Nitrix
+# nitrix
 
 A CLI tool to run a NodeJS process Forever. Restart on File changes & crashes with piping to stdout
 
@@ -23,7 +23,7 @@ $ nitrix app.js
 $ npm test
 ```
 
-[0]: http://ingklabs.com/
+[0]:http://ingklabs.com/
   
 ## License (MIT)
 
@@ -48,5 +48,5 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#### Author: [Edward Hotshkiss][0]
+## Author: [Edward Hotshkiss][0]
 
