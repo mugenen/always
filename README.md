@@ -1,31 +1,36 @@
 
-
 # Nitrix - Run a NodeJS process Forever. Restart on File changes, crashes and log all streams.
 
 ***
 
+### Motivation
+
+	A NodeJS process management tool that is always up to the latest NodeJS stable version. 
+	Ability to either use it in realtime upon file edits, or in production with logging and
+	optional --verbose output.
+
 ### Installation
 
 ```bash
-$ npm install nitrix -g
+$ [sudo] npm install nitrix -g
 ```
 
 ***
 
-### Usage
+### Basic Usage
 
-Usage: nitrix.js [options] [command]
+**Realtime Development**
 
-  Commands:
+```bash
+$ nitrix app.js
+```
 
-    start [app]
-    start [app] with nitrix/node
-    
-    * 
+**Production**
 
-  Options:
+```bash
+$ nitrix start app.js
+$ nitrix list
+$ => [0] app.js 00:00:04
+```
 
-    -h, --help               output usage information
-    -V, --version            output the version number
-    -o, --output <path/log>  stream output to a log file [./my/app.log]
-    -v, --verbose            verbose node output even with piped logging
+### Usage (Advanced)
