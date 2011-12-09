@@ -70,6 +70,10 @@ function logger(str){
 
 function monitor(){
   logger('initializing monitor');
+  /* NOTE: there is an open Node 0.6.5 stable bug reporting on strange and
+    unstable fs.watch behavior. Change is triggered twice, at the expense of the app
+    firing twice on each edit.
+    https://github.com/joyent/node/issues/1986 */
   fs.watch(__dirname+'/'+app, { interval:1 }, function(event, filename){
     if (event === 'change')
     logger(app.green+' has changed, restarting');
