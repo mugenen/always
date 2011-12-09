@@ -21,11 +21,6 @@ var testApp =
   '});\n'+
   'app.listen(8000)';
 
-var args = [
-  path.join(__dirname, '..', 'bin', 'nitrix'),
-  path.join(__dirname, '..', 'test', 'app')
-];
-
 /*!
   Vows
  */
@@ -52,12 +47,29 @@ vows.describe('nitrix vows setup & teardown')
  */
 
 .addBatch({
-  // modified from /github/nodejitsu/forever/test/helpers/
   'when running `nitrix start app.js`':{
-    topic:function(callback){
-      macros.spawn(args, this.callback);
+    topic:function() {
+      var args = [
+        path.join(__dirname, '..', 'bin', 'nitrix'),
+        path.join(__dirname, '..', 'test', 'app')
+      ];
+      var child = spawn('node', args),
+        stdout = '',
+        stderr = '';
+      child.stdout.on('data', function(data) {
+        stdout += data;
+      });
+      child.stderr.on('data', function(data) {
+        stderr += data;
+      });
+      child.once('exit', function(exitCode) {
+        setTimeout(function() {
+          self.callback(null, exitCode, stdout, stderr);
+        }, 200);
+      });
     },
     'there should be no errors':function(error, exitCode, stdout, stderr){
+      console.log(arguments);
       console.log(error, exitCode, stdout, stderr);
       assert.isNull(error);
     }
