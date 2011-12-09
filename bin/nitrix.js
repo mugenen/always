@@ -26,7 +26,7 @@ var managed = [
 */
 
 program
-  .version('0.0.4')
+  .version('0.0.1')
   .option('-l, --list', 'list all processes being managed')
   .option('-o, --output <path/log>', 'stream output to a log file [./my/app.log]')
   .option('-v, --verbose', 'verbose node output even with piped logging')
