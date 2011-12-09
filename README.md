@@ -1,5 +1,7 @@
 
-# Nitrix - Run a NodeJS process Forever. Restart on File changes, crashes and log all streams.
+# Nitrix
+
+## Run a NodeJS process Forever. Restart on File changes & crashes with piping to stdout or logs (both with --verbose)
 
 ***
 
