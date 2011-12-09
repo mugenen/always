@@ -11,7 +11,8 @@ var fs = require('fs'),
     path = require('path'),
     program = require('commander'),
     spawn = require('child_process').spawn,
-    args = process.argv;
+    args = process.argv,
+    previousEvent,
     node = null,
     app = null,
     pid = null
@@ -67,12 +68,12 @@ function logger(str){
   @param {String} file Name of file to monitor for changes
 */
 
-function watcher(){
-  fs.watch(__dirname+'/'+app, { persistent:false, interval:1 }, function(event, filename){
-    if (event === 'change') {
-      logger(app.green+' has changed, restarting');
-      restart();
-    };
+function monitor(){
+  logger('initializing monitor');
+  fs.watch(__dirname+'/'+app, { interval:1 }, function(event, filename){
+    console.log(event);
+    //logger(app.green+' has changed, restarting');
+    //restart();
   });
 };
 
@@ -89,7 +90,6 @@ function exists(file){
       logger(file+' is a directory'.red);
       return false;
     } else {
-      watcher(file);
       return true;
     }
   } catch (error) {
@@ -108,6 +108,8 @@ function start(){
     return false;
   } else {
     node = spawn('node', [app]);
+    // watch node child process file
+    monitor(app);
     node.stdout.on('data', function(data){
       logger(data.toString().split('/\n')[0]);
     });
@@ -142,7 +144,7 @@ function kill(){
 
 /*!
   @method restart
-  Cleanup (kill by pid), then start()
+  Kill process, restart
 */
 
 function restart(){
