@@ -1,8 +1,8 @@
 {
   "author":"Edward Hotchkiss <e@ingk.com>",
   "name":"nitrix",
-  "description":"Run a NodeJS process Forever",
-  "version":"0.0.0",
+  "description":"Run a NodeJS process Forever. Restart on File changes, crashes and log all streams.",
+  "version":"0.0.1",
   "repository":{
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/nitrix.git"
@@ -13,6 +13,8 @@
     "node":">= 0.4.12 < 0.8.0"
   },
   "dependencies":{
+    "commander":"",
+    "colors":""
   },
   "devDependencies":{
     "vows":"0.5.13",

@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var util = require('util');
-var exec = require('child_process').exec;
-var spawn = require('child_process').spawn;
-var path = require('path');
+require('colors');
 
-var args = process.argv.slice(2);
-var app = args[0];
+var fs = require('fs'),
+  util = require('util');
+  spawn = require('child_process').spawn;
+  path = require('path');
+  args = process.argv.slice(2);
 
-// start node myappXYZ.js
+// main node's child event loop
 function start(app) {
   node = spawn('node', [app]);
   node.stdout.on('data', function(data){
