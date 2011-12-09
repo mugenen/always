@@ -77,27 +77,31 @@ function exists(file){
 */
 
 function start(){
-  exists(app);
-  return;
-  node = spawn('node', [app]);
-  node.stdout.on('data', function(data){
-    console.log(data.toString());
-  });
-  node.stderr.on('data', function(data){
-    console.error(data.toString());
-  });
-  node.stderr.on('data', function (data) {
-    if (/^execvp\(\)/.test(data)) {
-      console.log('Failed to restart child process.');
-    }
-  });
-  node.on('exit', function (code, signal) {
-    if (signal == 'SIGUSR2') {
-      start();
-    } else {
-      start();  
-    }
-  });
+  if (!exists(app)){
+    return false;
+  } else {
+    node = spawn('node', [app]);
+    node.stdout.on('data', function(data){
+      console.log(data.toString());
+    });
+    node.stderr.on('data', function(data){
+      console.error(data.toString());
+    });
+    node.stderr.on('data', function (data) {
+      if (/^execvp\(\)/.test(data)) {
+        console.log('Failed to restart child process.');
+      }
+    });
+    node.on('exit', function (code, signal) {
+      if (signal == 'SIGUSR2') {
+        logger('Signal interuption, restarting '+app.green);
+        start();
+      } else {
+        logger('Error, restarting '+app.green)
+        start();  
+      }
+    });
+  };
 };
 
 /*!
