@@ -71,9 +71,9 @@ function logger(str){
 function monitor(){
   logger('initializing monitor');
   fs.watch(__dirname+'/'+app, { interval:1 }, function(event, filename){
-    console.log(event);
-    //logger(app.green+' has changed, restarting');
-    //restart();
+    if (event === 'change')
+    logger(app.green+' has changed, restarting');
+    restart();
   });
 };
 
