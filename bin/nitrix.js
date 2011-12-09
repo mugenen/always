@@ -88,8 +88,8 @@ function monitor(){
   */
   fs.watch(__dirname+'/'+app, { interval:1 }, function(event, filename){
     if (event === 'change')
-    logger(app.green+' has changed, restarting');
-    restart();
+      logger(app.green+' has changed, restarting');
+      restart();
   });
 };
 
