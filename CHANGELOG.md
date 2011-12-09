@@ -22,6 +22,7 @@
 	* `nitrix start myapp.js`
 	* `nitrix --version`
 	* `nitrix --help`
+	
 - Kill process before respawn
 - Restart on file edits
 - Restart on uncaughtException
