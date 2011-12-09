@@ -12,7 +12,9 @@ var fs = require('fs'),
     program = require('commander'),
     spawn = require('child_process').spawn,
     args = process.argv;
-    app = null;
+    node = null,
+    app = null,
+    pid = null
 
 /*!
   Commander
@@ -61,6 +63,20 @@ function logger(str){
 };
 
 /*!
+  @method watcher
+  @param {String} file Name of file to monitor for changes
+*/
+
+function watcher(){
+  fs.watch(__dirname+'/'+app, { persistent:true, interval:1000 }, function(event, filename){
+    if (event === 'change') {
+      logger(app.green+' has changed, restarting');
+      restart();
+    };
+  });
+};
+
+/*!
   @method exists
   Check that file exists
   @param {String} file File to check exists
@@ -73,6 +89,7 @@ function exists(file){
       logger(file+' is a directory'.red);
       return false;
     } else {
+      watcher(file);
       return true;
     }
   } catch (error) {
@@ -105,13 +122,33 @@ function start(){
     node.on('exit', function (code, signal) {
       if (signal == 'SIGUSR2') {
         logger('Signal interuption, restarting '+app.green);
-        start();
+        restart();
       } else {
+        console.log(code, signal);
         logger('Error, restarting '+app.green)
-        start();  
+        restart();  
       }
     });
   };
+};
+
+/*!
+  @method kill
+  Try to kill node process
+*/
+
+function kill(){
+  node && node.kill();
+};
+
+/*!
+  @method restart
+  Cleanup (kill by pid), then start()
+*/
+
+function restart(){
+  kill();
+  start();
 };
 
 /*!
@@ -120,24 +157,27 @@ function start(){
 */
 
 process.on('exit', function(code){
-  //...
+  kill();
 });
 
 // CTRL+C
 process.on('SIGINT', function(){
   logger('Killing '+app.green);
+  kill();
   process.exit(0);
 });
 
 process.on('SIGTERM', function(){
   logger(app.green+' killed');
+  kill();
   process.exit(0);
 });
 
 process.on('uncaughtException', function(error){
+  logger(error.toString().red);
   logger(error.stack.toString().red);
   logger('Restarting ' +app.green +' with Node');
-  start();
+  restart();
 });
 
 /* EOF */
