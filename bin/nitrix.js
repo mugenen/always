@@ -81,7 +81,7 @@ function npm(env) {
   if (new RegExp(/test/i).test(env)){
     return env;
   } else {
-    return __dirname+'/'+env;
+    return env;
   }
 };
 
