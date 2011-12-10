@@ -28,7 +28,7 @@ var managed = [
 */
 
 program
-  .version('0.0.2')
+  .version('0.0.4')
     
 program
   .command('start [app]')
