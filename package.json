@@ -2,15 +2,14 @@
   "author":"Edward Hotchkiss <e@ingk.com>",
   "name":"nitrix",
   "description":"A CLI & Daemon tool to run a NodeJS process Forever, restarting on file changes & crashes with piping to stdout or log files.",
-  "version":"0.0.2",
+  "version":"0.0.3",
   "repository":{
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/nitrix.git"
   },
   "keywords":["nitrix","process","forever","error","uncaught"],
-  "main":"./lib/nitrix",
   "engines":{
-    "node":">= 0.6.5 < 0.8.0"
+    "node":">= 0.4.11 < 0.8.0"
   },
   "dependencies":{
     "commander":"0.5.0",

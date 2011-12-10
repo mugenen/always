@@ -11,6 +11,7 @@ var fs = require('fs'),
     path = require('path'),
     program = require('commander'),
     spawn = require('child_process').spawn,
+    restartTimeout = 1000,
     args = process.argv,
     previousEvent,
     node = null,
@@ -159,8 +160,12 @@ function start(){
     node.on('exit', function (code, signal) {
       if (signal == 'SIGUSR2') {
         logger('signal interuption, restarting '+app.green, true);
+        restart();
       } else {
-        //...
+        // follow restartTimeout for restart (1s default)
+        setTimeout(function() {
+          restart();
+        }, restartTimeout);
       }
     });
   };
