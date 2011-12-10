@@ -1,7 +1,9 @@
 
 ## CHANGELOG
 
-### Version 0.0.5 (master, in progress)
+### Version 0.0.6 (master, in progress)
+
+### Version 0.0.5
 
 - Commander now uses proper version #
 - Minor [nitrix] changes in logger()
