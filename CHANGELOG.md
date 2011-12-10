@@ -3,8 +3,8 @@
 
 ### Version 0.0.8
 
-- Restart on TypeError
-- Use interval on compiler errors
+- Exit on irrecoverable fatal error.
+- Daemon mode `nitrix start myapp.js` won't exit however
 
 ### Version 0.0.7
 
