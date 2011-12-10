@@ -1,7 +1,9 @@
 
 ## CHANGELOG
 
-### Version 0.0.6 (master, in progress)
+### Version 0.0.6
+
+- Use watchFile vs. fs.watch now, as 0.6.x is buggy
 
 ### Version 0.0.5
 
