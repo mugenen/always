@@ -14,7 +14,9 @@ var fs = require('fs'),
     restartTimeout = 1000,
     args = process.argv,
     previousEvent,
+    cleaned,
     node = null,
+    file = null,
     app = null;
 
 // processes managed by nitrix
@@ -74,7 +76,8 @@ function npm(env) {
   if (new RegExp(/test/i).test(env)){
     return env;
   } else {
-    return __dirname+'./'+env;
+    file = env;
+    return __dirname+'/'+env;
   }
 };
 
@@ -84,7 +87,6 @@ function npm(env) {
 */
 
 function logger(str, isError){
-  console.log(str);
   isError = isError || false;
   if (isError) {
     console.log('[nitrix]'.magenta+' '+str.red);
@@ -107,7 +109,7 @@ function monitor(){
   */
   fs.watch(app, { interval:1 }, function(event, filename){
     if (event === 'change')
-      logger(app.green+' has changed, restarting');
+      logger(file.green+' has changed, restarting');
       restart();
   });
 };
@@ -143,11 +145,10 @@ function start(){
     return false;
   } else {
     node = spawn('node', [app]);
-    console.log(node.pid);
     // watch node child process file
     monitor(app);
     node.stdout.on('data', function(data){
-      logger(data.toString().split('/\n')[0]);
+      logger(data.toString());
     });
     node.stderr.on('data', function(data){
       logger(data.toString(), true);
@@ -162,10 +163,7 @@ function start(){
         logger('signal interuption, restarting '+app.green, true);
         restart();
       } else {
-        // follow restartTimeout for restart (1s default)
-        setTimeout(function() {
-          restart();
-        }, restartTimeout);
+        kill();
       }
     });
   };

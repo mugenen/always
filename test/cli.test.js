@@ -18,7 +18,7 @@ var testApp =
   'var app = http.createServer(function(request, response) {\n'+
   '  response.end(\'hi\');\n'+
   '});\n'+
-  'app.listen(8081)';
+  'app.listen(8000)';
 
 /*!
   Spawn Config

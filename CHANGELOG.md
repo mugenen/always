@@ -1,6 +1,13 @@
 
 ## CHANGELOG
 
+### Version 0.0.4 (master, in progress)
+
+- Testing for running app.js before teardown
+- Removed duplicated console.log
+- Cleaned `has changed` responses
+- Fixed path bug
+
 ### Version 0.0.3
 
 - Kill node process on test teardown
