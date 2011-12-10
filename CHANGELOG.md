@@ -1,7 +1,13 @@
 
 ## CHANGELOG
 
-### Version 0.0.4 (master, in progress)
+### Version 0.0.5 (master, in progress)
+
+- Commander now uses proper version #
+- Minor [nitrix] changes in logger()
+- Remove special characters such as \n \r >s
+
+### Version 0.0.4
 
 - Testing for running app.js before teardown
 - Removed duplicated console.log
