@@ -5,7 +5,7 @@
 
 - Commander now uses proper version #
 - Minor [nitrix] changes in logger()
-- Remove special characters such as \n \r >s
+- Remove special characters such as \n \r >s from child
 
 ### Version 0.0.4
 
