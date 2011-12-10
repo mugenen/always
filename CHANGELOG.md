@@ -1,9 +1,10 @@
 
 ## CHANGELOG
 
-### Version 0.0.7 (master, in progress)
+### Version 0.0.7
 
 - Graceful exits on args missing
+- Process.cwd() vs. __dirname
 
 ### Version 0.0.6
 
