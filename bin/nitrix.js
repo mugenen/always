@@ -13,11 +13,12 @@ var fs = require('fs'),
     spawn = require('child_process').spawn,
     restartTimeout = 1000,
     args = process.argv,
+    specials = /^\s+|\s+$/gmi,
     previousEvent,
-    cleaned,
     node = null,
     file = null,
-    app = null;
+    app = null,
+    cleaned;
 
 // processes managed by nitrix
 var managed = [
@@ -28,7 +29,7 @@ var managed = [
 */
 
 program
-  .version('0.0.4')
+  .version('0.0.5')
     
 program
   .command('start [app]')
@@ -42,7 +43,7 @@ program
     managed.push(obj);
     // npm test
     app = npm(env);
-    logger('sarting '+app.green +' with Node');
+    logger('sarting '+file.green +' with Node');
     start();
   });
 
@@ -52,7 +53,7 @@ program
     if (env){
       // npm test
       app = npm(env);
-      logger('starting ' +app.green +' with Node');
+      logger('starting ' +file.green +' with Node');
       start();
     } else {
       logger('no file specified'.red);
@@ -148,10 +149,12 @@ function start(){
     // watch node child process file
     monitor(app);
     node.stdout.on('data', function(data){
-      logger(data.toString());
+      cleaned = data.toString().replace(specials, '');
+      logger(cleaned);
     });
     node.stderr.on('data', function(data){
-      logger(data.toString(), true);
+      cleaned = data.toString().replace(specials, '');
+      logger(cleaned, true);
     });
     node.stderr.on('data', function (data) {
       if (/^execvp\(\)/.test(data)) {
