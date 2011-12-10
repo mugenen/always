@@ -1,6 +1,11 @@
 
 ## CHANGELOG
 
+### Version 0.0.7
+
+- Graceful exits on args missing
+
+
 ### Version 0.0.6
 
 - Use watchFile vs. fs.watch now, as 0.6.x is buggy

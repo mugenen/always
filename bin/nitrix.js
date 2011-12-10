@@ -15,6 +15,7 @@ var fs = require('fs'),
     args = process.argv,
     specials = /^\s+|\s+$/gmi,
     previousEvent,
+    directory,
     node = null,
     file = null,
     app = null,
@@ -29,7 +30,7 @@ var managed = [
 */
 
 program
-  .version('0.0.5')
+  .version('0.0.7')
     
 program
   .command('start [app]')
@@ -57,12 +58,14 @@ program
       start();
     } else {
       logger('no file specified'.red);
+      process.exit(0);
     }
   });
 
 // no args?
 if (args.length === 2) {
   logger('no file specified!'.red);
+  process.exit(0);
 } else {
   program.parse(args);
 };
@@ -102,6 +105,7 @@ function logger(str, isError){
 */
 
 function monitor(){
+  directory = path.dirname(file);
   fs.watchFile(file, { interval:1 }, function(current, previous){
     if (current.mtime.valueOf() != previous.mtime.valueOf() || current.ctime.valueOf() != previous.ctime.valueOf()) {
       logger(file.green+' has changed, restarting');
