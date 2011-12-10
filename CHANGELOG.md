@@ -1,10 +1,13 @@
 
 ## CHANGELOG
 
-### Version 0.0.3 (master, in progress)
+### Version 0.0.3
 
-- Log stdout to ~/.nitrix/[pid].error.log
-- Log stderr to ~/.nitrix/[pid].out.log
+- Kill node process on test teardown
+- Restart/Cleanup on 
+- Keep everything in bin vs. lib
+- `restartTimeout`/1s/1000ms restart on irrecoverable `exit`
+- Readme improvements
 
 ### Version 0.0.2
 
