@@ -1,6 +1,10 @@
 
 ## CHANGELOG
 
+### Version 0.0.9
+
+- Minor but important fix on control flow after extensive real world testing
+
 ### Version 0.0.8
 
 - Exit on irrecoverable fatal error.
