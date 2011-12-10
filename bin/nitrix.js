@@ -30,7 +30,7 @@ var managed = [
 */
 
 program
-  .version('0.0.8')
+  .version('0.0.9')
     
 program
   .command('start [app]')
