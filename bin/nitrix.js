@@ -165,6 +165,7 @@ function start(){
         logger('signal interuption, restarting '+app.green, true);
         restart();
       } else {
+        logger('fatal error. waiting for file change');
         kill();
       }
     });

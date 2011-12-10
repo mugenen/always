@@ -1,6 +1,11 @@
 
 ## CHANGELOG
 
+### Version 0.0.8
+
+- Restart on TypeError
+- Use interval on compiler errors
+
 ### Version 0.0.7
 
 - Graceful exits on args missing
