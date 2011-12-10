@@ -166,7 +166,6 @@ function start(){
         restart();
       } else {
         logger('fatal error. waiting for file change');
-        kill();
       }
     });
   };
