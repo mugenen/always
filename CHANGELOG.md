@@ -1,6 +1,13 @@
 
 ## CHANGELOG
 
+### Version 0.1.0
+
+- Display `nitrix` version on process start
+- console.log vs. logger for yourapp.js stdout/stderr
+	- appLogger()
+- Test for execvp and logger/exit on true
+
 ### Version 0.0.9
 
 - Minor but important fix on control flow after extensive real world testing
