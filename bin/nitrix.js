@@ -19,7 +19,9 @@ var fs = require('fs'),
     node = null,
     file = null,
     app = null,
-    cleaned;
+    cleaned,
+    // watch this
+    version = 'v0.1.0'
 
 // processes managed by nitrix
 var managed = [
@@ -30,7 +32,7 @@ var managed = [
 */
 
 program
-  .version('0.0.9')
+  .version(version)
     
 program
   .command('start [app]')
@@ -44,6 +46,7 @@ program
     managed.push(obj);
     // npm test
     app = npm(env);
+    logger(version);
     logger('sarting '+file.green +' with Node');
     start();
   });
@@ -54,6 +57,7 @@ program
     if (env){
       // npm test
       app = npm(env);
+      logger(version);
       logger('starting ' +file.green +' with Node');
       start();
     } else {
@@ -96,6 +100,21 @@ function logger(str, isError){
     console.log('[nitrix]'.magenta+' '+str.red);
   } else {
     console.log('[nitrix]'.magenta+' '+str);
+  }
+};
+
+/*!
+  @method appLogger
+  Log <yourapp.js> methods with green highlighting
+*/
+
+function appLogger(str, isError){
+  isError = isError || false;
+  var nice = '['+file+']';
+  if (isError) {
+    console.log(nice.green+' '+str.red);
+  } else {
+    console.log(nice.green+' '+str);
   }
 };
 
@@ -149,15 +168,16 @@ function start(){
     monitor(app);
     node.stdout.on('data', function(data){
       cleaned = data.toString().replace(specials, '');
-      logger(cleaned);
+      appLogger(cleaned);
     });
     node.stderr.on('data', function(data){
       cleaned = data.toString().replace(specials, '');
-      logger(cleaned, true);
+      appLogger(cleaned, true);
     });
     node.stderr.on('data', function (data) {
       if (/^execvp\(\)/.test(data)) {
         logger('failed to restart child process.', true);
+        process.exit(0);
       }
     });
     node.on('exit', function (code, signal) {
