@@ -1,10 +1,9 @@
 
 ## CHANGELOG
 
-### Version 0.0.7
+### Version 0.0.7 (master, in progress)
 
 - Graceful exits on args missing
-
 
 ### Version 0.0.6
 
