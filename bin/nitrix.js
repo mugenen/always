@@ -109,9 +109,10 @@ function monitor(){
         => https://github.com/joyent/node/issues/1986
   */
   fs.watch(app, { interval:1 }, function(event, filename){
-    if (event === 'change')
+    if (event === 'change') {
       logger(file.green+' has changed, restarting');
       restart();
+    };
   });
 };
 

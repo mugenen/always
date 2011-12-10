@@ -6,6 +6,7 @@
 - Commander now uses proper version #
 - Minor [nitrix] changes in logger()
 - Remove special characters such as \n \r >s
+- watchFile vs. watch while node 0.6.x is resolved
 
 ### Version 0.0.4
 
