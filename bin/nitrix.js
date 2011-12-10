@@ -74,10 +74,10 @@ if (args.length === 2) {
  */
 
 function npm(env) {
+  file = env;
   if (new RegExp(/test/i).test(env)){
     return env;
   } else {
-    file = env;
     return __dirname+'/'+env;
   }
 };
