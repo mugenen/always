@@ -1,6 +1,14 @@
 
 ## CHANGELOG
 
+### Version 0.1.1 (master branch)
+
+- Display that user killed process now with CTL+C
+- Removed `require colors`, 1 less dependency
+- Use initial capitalized letter on [nitrix] commands
+- Yellow warnings
+- [myapp.js] in green to [myapp.js] in cyan
+
 ### Version 0.1.0
 
 - Display `nitrix` version on process start

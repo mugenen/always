@@ -4,8 +4,6 @@
   Module dependencies
 */
 
-require('colors');
-
 var fs = require('fs'),
     util = require('util'),
     path = require('path'),
@@ -21,11 +19,31 @@ var fs = require('fs'),
     app = null,
     cleaned,
     // watch this
-    version = 'v0.1.0'
+    version = 'v0.1.1'
 
 // processes managed by nitrix
 var managed = [
 ];
+
+/*!
+  __defineGetter__(<ANSI supported color>, fn
+  http://en.wikipedia.org/wiki/ANSI_escape_code#CSI_codes
+ */
+
+['magenta','yellow','green','blue','cyan','red'].forEach(function(color) {
+  String.prototype.__defineGetter__(color, function(){
+    var options = {
+      'magenta' : '\u001b[35m',
+      'yellow' : '\u001b[33m',
+      'green' : '\u001b[32m',
+      'blue' : '\u001b[34m',
+      'cyan' : '\u001b[36m',
+      'reset' : '\u001b[0m',
+      'red' : '\u001b[31m'
+    };
+    return options[color]+this+options['reset'];
+  });
+});
 
 /*!
   Commander
@@ -47,7 +65,7 @@ program
     // npm test
     app = npm(env);
     logger(version);
-    logger('sarting '+file.green +' with Node');
+    logger('Sarting '+file.green +' with Node');
     start();
   });
 
@@ -58,17 +76,17 @@ program
       // npm test
       app = npm(env);
       logger(version);
-      logger('starting ' +file.green +' with Node');
+      logger('Starting ' +file.green +' with Node');
       start();
     } else {
-      logger('no file specified'.red);
+      logger('No file specified'.yellow);
       process.exit(0);
     }
   });
 
 // no args?
 if (args.length === 2) {
-  logger('no file specified!'.red);
+  logger('No file specified!'.yellow);
   process.exit(0);
 } else {
   program.parse(args);
@@ -112,9 +130,9 @@ function appLogger(str, isError){
   isError = isError || false;
   var nice = '['+file+']';
   if (isError) {
-    console.log(nice.green+' '+str.red);
+    console.log(nice.cyan+' '+str.red);
   } else {
-    console.log(nice.green+' '+str);
+    console.log(nice.cyan+' '+str);
   }
 };
 
@@ -223,7 +241,7 @@ process.on('exit', function(code){
 
 // CTRL+C
 process.on('SIGINT', function(){
-  logger('Killing '+app.green, true);
+  logger('User killed process. Killing '+app.green, true);
   kill();
   process.exit(0);
 });
