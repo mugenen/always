@@ -9,7 +9,7 @@ require('../lib/colors');
 var fs = require('fs'),
     util = require('util'),
     path = require('path'),
-    nitrix = require('../lib/program'),
+    always = require('../lib/program'),
     spawn = require('child_process').spawn,
     restartTimeout = 1000,
     args = process.argv,
@@ -20,9 +20,9 @@ var fs = require('fs'),
     file = null,
     app = null,
     cleaned,
-    version = 'v0.1.2'
+    version = 'v0.2.0'
 
-// processes managed by nitrix
+// processes managed by always
 var managed = [
 ];
 
@@ -30,7 +30,7 @@ var managed = [
   Setup CLI
 */
 
-nitrix.version(version);
+always.version(version);
 
 if (args.length === 2) {
   logger('No file specified!'.yellow);
@@ -65,9 +65,9 @@ function npm(env) {
 function logger(str, isError){
   isError = isError || false;
   if (isError) {
-    console.log('[nitrix]'.magenta+' '+str.red);
+    console.log('[always]'.magenta+' '+str.red);
   } else {
-    console.log('[nitrix]'.magenta+' '+str);
+    console.log('[always]'.magenta+' '+str);
   }
 };
 

@@ -1,13 +1,13 @@
 {
   "author":"Edward Hotchkiss <e@ingk.com>",
-  "name":"nitrix",
+  "name":"always",
   "description":"A CLI & Daemon tool to run a NodeJS process Forever, restarting on file changes & crashes with piping to stdout or log files.",
-  "version":"0.1.3",
+  "version":"0.2.0",
   "repository":{
     "type":"git",
-    "url":"git://github.com/edwardhotchkiss/nitrix.git"
+    "url":"git://github.com/edwardhotchkiss/always.git"
   },
-  "keywords":["nitrix","process","forever","error","uncaught"],
+  "keywords":["always","process","forever","error","uncaught"],
   "engines":{
     "node":">= 0.4.12 < 0.8.0"
   },
@@ -15,12 +15,12 @@
   "devDependencies":{
     "vows":"0.6.0"
   },
-  "bin": { "nitrix" : "./bin/nitrix.js" },
+  "bin": { "nitrix":"./bin/always.js" },
   "licenses":[{
     "type":"MIT",
-    "url":"http://github.com/edwardhotchkiss/nitrix/LICENSE"
+    "url":"http://github.com/edwardhotchkiss/always/LICENSE"
   }],
-  "preferGlobal" : "true",
+  "preferGlobal":"true",
   "scripts":{
     "test":"vows test/*.test.js --spec"
   }

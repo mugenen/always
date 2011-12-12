@@ -25,7 +25,7 @@ var testApp =
  */
 
 var args = [
-  path.join(__dirname, '..', 'bin', 'nitrix.js'),
+  path.join(__dirname, '..', 'bin', 'always.js'),
   path.join(__dirname, '..', 'test', 'app.js')
 ];
 
@@ -33,7 +33,7 @@ var args = [
   Vows
  */
 
-vows.describe('nitrix vows setup & teardown')
+vows.describe('always vows setup & teardown')
 
 /*!
   Vows Setup
@@ -51,11 +51,11 @@ vows.describe('nitrix vows setup & teardown')
 })
 
 /*!
-  Test nitrix CLI
+  Test always CLI
  */
 
 .addBatch({
-  'when running `nitrix start app.js`':{
+  'when running `always start app.js`':{
     topic:function() {
       var self = this;
       var child = spawn('node', args),

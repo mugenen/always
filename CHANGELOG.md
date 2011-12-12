@@ -1,13 +1,17 @@
 
 ## CHANGELOG
 
-### Version 0.1.3 (master branch)
+### Version 0.1.4
+
+- Rename to from to `always`
+
+### Version 0.1.3
 
 - Commander was still in package.json
 
 ### Version 0.1.2
 
-- Nitrix is free of all 3rd party module dependencies
+- always is free of all 3rd party module dependencies
 	* Removed commander dependency (overkill)
 	* Code being segmented into /lib
 	* /lib/colors.js
@@ -18,13 +22,13 @@
 
 - Display that user killed process now with CTL+C
 - Removed `require colors`, 1 less dependency
-- Use initial capitalized letter on [nitrix] commands
+- Use initial capitalized letter on [always] commands
 - Yellow warnings
 - [myapp.js] in green to [myapp.js] in cyan
 
 ### Version 0.1.0
 
-- Display `nitrix` version on process start
+- Display `always` version on process start
 - console.log vs. logger for yourapp.js stdout/stderr
 	- appLogger()
 - Test for execvp and logger/exit on true
@@ -36,7 +40,7 @@
 ### Version 0.0.8
 
 - Exit on irrecoverable fatal error.
-- Daemon mode `nitrix start myapp.js` won't exit however
+- Daemon mode `always start myapp.js` won't exit however
 
 ### Version 0.0.7
 
@@ -50,7 +54,7 @@
 ### Version 0.0.5
 
 - Commander now uses proper version #
-- Minor [nitrix] changes in logger()
+- Minor [always] changes in logger()
 - Remove special characters such as \n \r >s from child
 
 ### Version 0.0.4
@@ -73,17 +77,17 @@
 - Removed help options that are for later implementation
 - Added a complete automated vows test suite
 	* Setup
-	* Test `nitrix` CLI
+	* Test `always` CLI
 	* Teardown
 - Added .gitignore
 
 ### Version 0.0.1 (initial version)
 
 - Implementations:
-	* `nitrix myapp.js`
-	* `nitrix start myapp.js`
-	* `nitrix --version`
-	* `nitrix --help`
+	* `always myapp.js`
+	* `always start myapp.js`
+	* `always --version`
+	* `always --help`
 	
 - Kill process before respawn
 - Restart on file edits
