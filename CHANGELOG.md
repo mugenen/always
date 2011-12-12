@@ -3,9 +3,9 @@
 
 ### Version 0.1.2 (master branch)
 
-- Removed commander dependency (overkill)
 - Nitrix is free of all 3rd party module dependencies
-- Code being segmented into /lib
+	* Removed commander dependency (overkill)
+	* Code being segmented into /lib
 	* /lib/colors.js
 	* /lib/options.js
 - ...
