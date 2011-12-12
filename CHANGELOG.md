@@ -1,7 +1,16 @@
 
 ## CHANGELOG
 
-### Version 0.1.1 (master branch)
+### Version 0.1.2 (master branch)
+
+- Removed commander dependency (overkill)
+- Nitrix is free of all 3rd party module dependencies
+- Code being segmented into /lib
+	* /lib/colors.js
+	* /lib/options.js
+- ...
+
+### Version 0.1.1
 
 - Display that user killed process now with CTL+C
 - Removed `require colors`, 1 less dependency

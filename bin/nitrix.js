@@ -4,10 +4,12 @@
   Module dependencies
 */
 
+require('../lib/colors');
+
 var fs = require('fs'),
     util = require('util'),
     path = require('path'),
-    program = require('commander'),
+    nitrix = require('../lib/program'),
     spawn = require('child_process').spawn,
     restartTimeout = 1000,
     args = process.argv,
@@ -17,42 +19,21 @@ var fs = require('fs'),
     node = null,
     file = null,
     app = null,
-    cleaned,
-    // watch this
-    version = 'v0.1.1'
+    cleaned;
 
 // processes managed by nitrix
 var managed = [
 ];
 
 /*!
-  __defineGetter__(<ANSI supported color>, fn
-  http://en.wikipedia.org/wiki/ANSI_escape_code#CSI_codes
- */
-
-['magenta','yellow','green','blue','cyan','red'].forEach(function(color) {
-  String.prototype.__defineGetter__(color, function(){
-    var options = {
-      'magenta' : '\u001b[35m',
-      'yellow' : '\u001b[33m',
-      'green' : '\u001b[32m',
-      'blue' : '\u001b[34m',
-      'cyan' : '\u001b[36m',
-      'reset' : '\u001b[0m',
-      'red' : '\u001b[31m'
-    };
-    return options[color]+this+options['reset'];
-  });
-});
-
-/*!
-  Commander
+  Setup CLI
 */
 
-program
-  .version(version)
+nitrix.version('v0.1.2');
+
+nitrix.args(args);
     
-program
+/*nitrix
   .command('start [app]')
   .description('start [app] with nitrix/node')
   .action(function(env){
@@ -90,7 +71,7 @@ if (args.length === 2) {
   process.exit(0);
 } else {
   program.parse(args);
-};
+};*/
 
 /*!
   @method npm
