@@ -1,7 +1,11 @@
 
 ## CHANGELOG
 
-### Version 0.1.2 (master branch)
+### Version 0.1.3 (master branch)
+
+- Commander was still in package.json
+
+### Version 0.1.2
 
 - Nitrix is free of all 3rd party module dependencies
 	* Removed commander dependency (overkill)
