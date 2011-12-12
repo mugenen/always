@@ -19,7 +19,8 @@ var fs = require('fs'),
     node = null,
     file = null,
     app = null,
-    cleaned;
+    cleaned,
+    version = 'v0.1.2'
 
 // processes managed by nitrix
 var managed = [
@@ -29,49 +30,17 @@ var managed = [
   Setup CLI
 */
 
-nitrix.version('v0.1.2');
+nitrix.version(version);
 
-nitrix.args(args);
-    
-/*nitrix
-  .command('start [app]')
-  .description('start [app] with nitrix/node')
-  .action(function(env){
-    var obj = {
-      pid : null,
-      id : managed.length,
-      startTime : new Date().getTime()
-    }
-    managed.push(obj);
-    // npm test
-    app = npm(env);
-    logger(version);
-    logger('Sarting '+file.green +' with Node');
-    start();
-  });
-
-program
-  .command('*')
-  .action(function(env){
-    if (env){
-      // npm test
-      app = npm(env);
-      logger(version);
-      logger('Starting ' +file.green +' with Node');
-      start();
-    } else {
-      logger('No file specified'.yellow);
-      process.exit(0);
-    }
-  });
-
-// no args?
 if (args.length === 2) {
   logger('No file specified!'.yellow);
   process.exit(0);
 } else {
-  program.parse(args);
-};*/
+  app = npm(args[2]);
+  logger(version);
+  logger('Starting ' +file.green +' with Node');
+  start();
+};
 
 /*!
   @method npm
