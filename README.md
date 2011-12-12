@@ -1,12 +1,12 @@
 
-# Nitrix - [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/nitrix.png)](http://travis-ci.org/edwardhotchkiss/nitrix)
+# Always - [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/always.png)](http://travis-ci.org/edwardhotchkiss/always)
 
 > A CLI & Daemon tool to run a NodeJS process Forever, restarting on file changes & crashes with piping to stdout or log files.
 
 ## Installation
 
 ```bash
-$ [sudo] npm install nitrix -g
+$ [sudo] npm install always -g
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ $ [sudo] npm install nitrix -g
 ### Realtime Editing & Development
 
 ```bash
-$ nitrix app.js
+$ always app.js
 ```
 
 ## Run Tests
