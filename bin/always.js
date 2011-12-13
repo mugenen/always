@@ -94,7 +94,9 @@ function initializeDevelopment(){
  */
 
 function displayVersion(){
+  console.log('');
   logger(version);
+  console.log('');
 };
 
 /*!
