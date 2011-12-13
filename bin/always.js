@@ -9,7 +9,6 @@ require('../lib/colors');
 var fs = require('fs'),
     util = require('util'),
     path = require('path'),
-    always = require('../lib/program'),
     spawn = require('child_process').spawn,
     restartTimeout = 1000,
     args = process.argv,
@@ -30,16 +29,16 @@ var managed = [
   Setup CLI
 */
 
-always.version(version);
-
 if (args.length === 2) {
   logger('No file specified!'.yellow);
   process.exit(0);
 } else {
-  app = npm(args[2]);
-  logger(version);
-  logger('Starting ' +file.green +' with Node');
-  start();
+  if (args.length === 3) {
+    app = npm(args[2]);
+    logger(version);
+    logger('Starting ' +file.green +' with Node');
+    start(); 
+  }
 };
 
 /*!
