@@ -1,7 +1,12 @@
 
 ## CHANGELOG
 
-### Version 0.1.4
+### Version 0.2.1 (master branch)
+
+- Removed /lib/program.js requirement/segmentation
+- @method initializeDevelpment (mode) segmented out
+
+### Version 0.2.0
 
 - Rename to from to `always`
 

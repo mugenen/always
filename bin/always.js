@@ -33,12 +33,23 @@ if (args.length === 2) {
   logger('No file specified!'.yellow);
   process.exit(0);
 } else {
-  if (args.length === 3) {
-    app = npm(args[2]);
-    logger(version);
-    logger('Starting ' +file.green +' with Node');
-    start(); 
+  switch(args[2]) {
+    default:
+      initializeDevelopment();
+      break;   
   }
+};
+
+/*!
+  @method initalizeDevelopment
+  Initialize Development/Live Editing mode for `always`
+ */
+
+function initializeDevelopment(){
+  app = npm(args[2]);
+  logger(version);
+  logger('Starting ' +file.green +' with Node');
+  start();
 };
 
 /*!
