@@ -5,6 +5,8 @@
 
 - Removed /lib/program.js requirement/segmentation
 - @method initializeDevelpment (mode) segmented out
+- @method help
+- @method version
 
 ### Version 0.2.0
 

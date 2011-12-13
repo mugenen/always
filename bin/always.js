@@ -19,7 +19,7 @@ var fs = require('fs'),
     file = null,
     app = null,
     cleaned,
-    version = 'v0.2.0'
+    version = 'v0.2.1'
 
 // processes managed by always
 var managed = [
@@ -34,6 +34,24 @@ if (args.length === 2) {
   process.exit(0);
 } else {
   switch(args[2]) {
+    case 'help':
+      help();
+      break;
+    case '-h':
+      help();
+      break;
+    case '--help':
+      help();
+      break;
+    case 'version':
+      displayVersion();
+      break;
+    case '-v':
+      displayVersion();
+      break;
+    case '--version':
+      displayVersion();
+      break;  
     default:
       initializeDevelopment();
       break;   
@@ -50,6 +68,33 @@ function initializeDevelopment(){
   logger(version);
   logger('Starting ' +file.green +' with Node');
   start();
+};
+
+/*!
+  @method help
+  Display `always` usage information
+ */
+
+ function help(){
+  console.log([
+    '',
+    'Usage: always <options> <app.js>'.cyan,
+    '=> always app.js'.green,
+    '',
+    'Options:',
+    '  -v, --version    current `always` version',
+    '  -h, --help       help!',
+    ''
+  ].join('\n'));
+ };
+
+/*!
+  @method displayVersion
+  Display current `always` version #
+ */
+
+function displayVersion(){
+  logger(version);
 };
 
 /*!
