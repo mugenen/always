@@ -48,7 +48,15 @@ if (args.length === 2) {
       break;
     case '--version':
       displayVersion();
-      break;  
+      break; 
+    case 'start':
+      if (args[3] === undefined){
+        logger('No file specified!'.yellow);
+        process.exit(0);
+      } else {
+        startDaemon(args[3]);
+      }
+      break;
     default:
       initializeDevelopment();
       break;   
@@ -208,6 +216,15 @@ function start(){
       };
     });
   };
+};
+
+/*!
+  @method startDaemon
+  @param {String} app
+ */
+
+function startDaemon(app){
+  
 };
 
 /*!
