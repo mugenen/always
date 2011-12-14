@@ -9,11 +9,10 @@ require('../lib/colors');
 var fs = require('fs'),
     util = require('util'),
     path = require('path'),
-    exts = /(.*?)\.(js|ejs)$/i,
     spawn = require('child_process').spawn,
     Monitor = require('../lib/monitor'),
-    restartTimeout = 1000,
     args = process.argv,
+    managed = [],
     specials = /^\s+|\s+$/gmi,
     previousEvent,
     directory,
@@ -21,11 +20,7 @@ var fs = require('fs'),
     file = null,
     app = null,
     cleaned,
-    version = 'v0.2.2'
-
-// processes managed by always
-var managed = [
-];
+    version = 'v0.2.3'
 
 /*!
   Setup CLI
@@ -151,9 +146,8 @@ function appLogger(str, isError){
 */
 
 function initializeFileMonitor(app){
-  directory = path.dirname(file);
   // setup monitor EE
-  var monitor = Monitor.create(file);
+  var monitor = Monitor.create(path.dirname(app));
   monitor.on('change', function(which) {
     logger(which.green+' has changed, restarting');
     restart();
@@ -218,12 +212,11 @@ function start(){
 
 /*!
   @method kill
-  Unwatch file, then ->
   Try to kill node process
 */
 
 function kill(){
-  fs.unwatchFile(app);
+  monitor = null;
   node && node.kill();
 };
 

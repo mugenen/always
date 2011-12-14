@@ -2,7 +2,7 @@
   "author":"Edward Hotchkiss <e@ingk.com>",
   "name":"always",
   "description":"A CLI & Daemon tool to run a NodeJS process Forever, restarting on file changes & crashes with piping to stdout or log files.",
-  "version":"0.2.2",
+  "version":"0.2.3",
   "repository":{
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/always.git"

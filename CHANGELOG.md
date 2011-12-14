@@ -1,10 +1,15 @@
 
 ## CHANGELOG
 
+### Version 0.2.3 (master branch)
+
+- Watch relevant files in main app directory
+	* .js/.json/.ejs/.yaml
+- Walk => watch the file tree recursively on down
+
 ### Version 0.2.2
 
-- Watch all project subdirectories! (ejs|js)
-	* /lib/monitor.js
+- /lib/monitor.js (new (EventEmitter))
 
 ### Version 0.2.1
 
