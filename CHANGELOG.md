@@ -1,6 +1,15 @@
 
 ## CHANGELOG
 
+### Version 0.3.0 / 12-14-11 (master branch)
+
+- Changed description
+- Daemon created
+	* `always start myapp.js`
+	* `always list`
+		=> <my_daemonized_apps>
+- Updated tests for Daemonization
+
 ### Version 0.2.3 / 12-14-11
 
 - Watch relevant files in main app directory
