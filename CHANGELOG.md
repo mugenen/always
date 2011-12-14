@@ -1,7 +1,7 @@
 
 ## CHANGELOG
 
-### Version 0.2.1 (master branch)
+### Version 0.2.1
 
 - Removed /lib/program.js requirement/segmentation
 - @method initializeDevelpment (mode) segmented out

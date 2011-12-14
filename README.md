@@ -17,6 +17,17 @@ $ [sudo] npm install always -g
 $ always app.js
 ```
 
+## Usage
+
+```bash
+Usage: always <options> <app.js>
+=> always app.js
+
+Options:
+  -v, --version    current `always` version
+  -h, --help       help!
+```
+
 ## Run Tests
 
 ``` bash
