@@ -1,6 +1,11 @@
 
 ## CHANGELOG
 
+### Version 0.2.2
+
+- Watch all project subdirectories! (ejs|js)
+	* /lib/monitor.js
+
 ### Version 0.2.1
 
 - Removed /lib/program.js requirement/segmentation

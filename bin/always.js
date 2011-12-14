@@ -9,7 +9,9 @@ require('../lib/colors');
 var fs = require('fs'),
     util = require('util'),
     path = require('path'),
+    exts = /(.*?)\.(js|ejs)$/i,
     spawn = require('child_process').spawn,
+    Monitor = require('../lib/monitor'),
     restartTimeout = 1000,
     args = process.argv,
     specials = /^\s+|\s+$/gmi,
@@ -19,7 +21,7 @@ var fs = require('fs'),
     file = null,
     app = null,
     cleaned,
-    version = 'v0.2.1'
+    version = 'v0.2.2'
 
 // processes managed by always
 var managed = [
@@ -148,13 +150,13 @@ function appLogger(str, isError){
   @param {String} file Name of file to monitor for changes
 */
 
-function monitor(){
+function initializeFileMonitor(app){
   directory = path.dirname(file);
-  fs.watchFile(file, { interval:1 }, function(current, previous){
-    if (current.mtime.valueOf() != previous.mtime.valueOf() || current.ctime.valueOf() != previous.ctime.valueOf()) {
-      logger(file.green+' has changed, restarting');
-      restart();
-    };
+  // setup monitor EE
+  var monitor = Monitor.create(file);
+  monitor.on('change', function(which) {
+    logger(which.green+' has changed, restarting');
+    restart();
   });
 };
 
@@ -190,7 +192,7 @@ function start(){
   } else {
     node = spawn('node', [app]);
     // watch node child process file
-    monitor(app);
+    initializeFileMonitor(app);
     node.stdout.on('data', function(data){
       cleaned = data.toString().replace(specials, '');
       appLogger(cleaned);
@@ -209,9 +211,7 @@ function start(){
       if (signal == 'SIGUSR2') {
         logger('signal interuption, restarting '+app.green, true);
         restart();
-      } else {
-        logger('fatal error. waiting for file change');
-      }
+      };
     });
   };
 };
