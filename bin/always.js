@@ -32,20 +32,12 @@ if (args.length === 2) {
 } else {
   switch(args[2]) {
     case 'help':
-      help();
-      break;
     case '-h':
-      help();
-      break;
     case '--help':
       help();
       break;
     case 'version':
-      displayVersion();
-      break;
     case '-v':
-      displayVersion();
-      break;
     case '--version':
       displayVersion();
       break; 
