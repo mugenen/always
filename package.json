@@ -13,7 +13,7 @@
   },
   "dependencies":{},
   "devDependencies":{
-    "speculum":"0.0.3"
+    "speculum":"0.1.0"
   },
   "bin": { "always":"./bin/always.js" },
   "licenses":[{
