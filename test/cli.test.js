@@ -33,7 +33,7 @@ var args = [
   Speculum Tests
  */
 
-speculum.describe('always vows setup & teardown')/
+speculum.describe('`always` `speculum` setup');
 
 /*!
   Speculum Setup
@@ -44,8 +44,8 @@ speculum.add({
     result:function(){
       return fs.writeFileSync(__dirname+'/app.js', testApp, 'utf8');
     },
-    'there should be no errors':function(result){
-      assert.equal(typeof(result), 'undefined');
+    'there should be no errors':function(error){
+      assert.equal(typeof(error), 'undefined');
     }
   }
 })
