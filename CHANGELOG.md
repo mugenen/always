@@ -1,121 +1,144 @@
 
-## CHANGELOG
+0.3.1 / 2011-12-18 
+==================
 
-### Version 0.3.0 / 12-14-11 (master branch)
+  * simplified switch
+  * setup for `always start app.js`
+  * new description, setup for 0.3.0 (daemonization)
+  * dates on the changelog
 
-- Changed description
-- Daemon created
+0.3.0 / 2011-12-16
+==================
+
+  * Changed description
+  * aemon created
 	* `always start myapp.js`
 	* `always list`
 		=> <my_daemonized_apps>
-- Updated tests for Daemonization
+  * pdated tests for Daemonization
 
-### Version 0.2.3 / 12-14-11
+0.2.3 / 2011-12-14
+==================
 
-- Watch relevant files in main app directory
+  * watch relevant files in main app directory
 	* .js/.json/.ejs/.yaml
-- Walk => watch the file tree recursively on down
+  * walk => watch the file tree recursively on down
 
-### Version 0.2.2 / 12-13-11
+0.2.2 / 2011-12-11
+==================
 
-- /lib/monitor.js (new (EventEmitter))
+   * /lib/monitor.js (new (EventEmitter))
 
-### Version 0.2.1 / 12-13-11
+0.2.1 / 2011-12-11
+==================
 
-- Removed /lib/program.js requirement/segmentation
-- @method initializeDevelpment (mode) segmented out
-- @method help
-- @method version
+  * removed /lib/program.js requirement/segmentation
+  * @method initializeDevelpment (mode) segmented out
+  * @method help
+ * @method version
 
-### Version 0.2.0 / 12-12-11
+ 0.2.0 / 2011-12-11
+===================
 
-- Rename to from to `always`
+ * rename to from to `always`
 
-### Version 0.1.3 / 12-12-11
+0.1.3 / 2011-12-11
+==================
 
-- Commander was still in package.json 
+  * commander was still in package.json 
 
-### Version 0.1.2 / 12-12-11
+0.1.2 / 2011-12-11
+==================
 
-- always is free of all 3rd party module dependencies
+  * always is free of all 3rd party module dependencies
 	* Removed commander dependency (overkill)
 	* Code being segmented into /lib
 	* /lib/colors.js
 	* /lib/options.js
-- ...
 
-### Version 0.1.1 / 12-12-11
+0.1.1 / 2011-12-16
+==================
 
-- Display that user killed process now with CTL+C
-- Removed `require colors`, 1 less dependency
-- Use initial capitalized letter on [always] commands
-- Yellow warnings
-- [myapp.js] in green to [myapp.js] in cyan
+  * display that user killed process now with CTL+C
+  * removed `require colors`, 1 less dependency
+  * use initial capitalized letter on [always] commands
+  * yellow warnings
+  * [myapp.js] in green to [myapp.js] in cyan
 
-### Version 0.1.0 / 12-11-11
+0.1.0 / 2011-12-11
+==================
 
-- Display `always` version on process start
-- console.log vs. logger for yourapp.js stdout/stderr
+  * display `always` version on process start
+  * console.log vs. logger for yourapp.js stdout/stderr
 	- appLogger()
-- Test for execvp and logger/exit on true
+  * test for execvp and logger/exit on true
 
-### Version 0.0.9 / 12-11-11
+0.0.9 / 2011-12-11
+==================
 
-- Minor but important fix on control flow after extensive real world testing
+  * minor but important fix on control flow after extensive real world testing
 
-### Version 0.0.8 / 12-11-11
+0.0.8 / 2011-12-11
+==================
 
-- Exit on irrecoverable fatal error.
-- Daemon mode `always start myapp.js` won't exit however
+  * exit on irrecoverable fatal error.
+  * daemon mode `always start myapp.js` won't exit however
 
-### Version 0.0.7 / 12-11-11
+0.0.7 / 2011-12-11
+==================
 
-- Graceful exits on args missing
-- Process.cwd() vs. __dirname
+  * graceful exits on args missing
+  * process.cwd() vs. __dirname
 
-### Version 0.0.6 / 12-11-11
+0.0.6 / 2011-12-11
+==================
 
-- Use watchFile vs. fs.watch now, as 0.6.x is buggy
+  * use watchFile vs. fs.watch now, as 0.6.x is buggy
 
-### Version 0.0.5 / 12-11-11
+0.0.5 / 2011-12-11
+==================
 
-- Commander now uses proper version #
-- Minor [always] changes in logger()
-- Remove special characters such as \n \r >s from child
+  * commander now uses proper version #
+  * minor [always] changes in logger()
+  * remove special characters such as \n \r >s from child
 
-### Version 0.0.4 / 12-10-11
+0.0.4 / 2011-12-11
+==================
 
-- Testing for running app.js before teardown
-- Removed duplicated console.log
-- Cleaned `has changed` responses
-- Fixed path bug
+  * testing for running app.js before teardown
+  * removed duplicated console.log
+  * cleaned `has changed` responses
+  * fixed path bug
 
-### Version 0.0.3 / 12-10-11
+0.0.3 / 2011-12-11
+==================
 
-- Kill node process on test teardown
-- Restart/Cleanup on 
-- Keep everything in bin vs. lib
-- `restartTimeout`/1s/1000ms restart on irrecoverable `exit`
-- Readme improvements
+  * kill node process on test teardown
+  * restart/Cleanup on 
+  * keep everything in bin vs. lib
+  * `restartTimeout`/1s/1000ms restart on irrecoverable `exit`
+  * readme improvements
 
-### Version 0.0.2 / 12-10-11
+0.0.2 / 2011-12-11
+==================
 
-- Removed help options that are for later implementation
-- Added a complete automated vows test suite
+  * removed help options that are for later implementation
+  * added a complete automated vows test suite
 	* Setup
 	* Test `always` CLI
 	* Teardown
-- Added .gitignore
+  * added .gitignore
 
-### Version 0.0.1 / 12-10-11 (initial version)
+0.0.1 / 2011-12-11
+==================
 
-- Implementations:
+  * implementations:
 	* `always myapp.js`
 	* `always start myapp.js`
 	* `always --version`
 	* `always --help`
 	
-- Kill process before respawn
-- Restart on file edits
-- Restart on uncaughtException
-- Sweet spot for development usage.
+  * kill process before respawn
+  * restart on file edits
+  * restart on uncaughtException
+  * sweet spot for development usage.
