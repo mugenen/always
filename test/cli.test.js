@@ -53,10 +53,10 @@ speculum.add({
 /*!
   Test always CLI
  */
-/*
+
 speculum.add({
   'when running `always start app.js`':{
-    topic:function() {
+    result:function() {
       var self = this;
       var child = spawn('node', args),
         stdout = '',
@@ -73,20 +73,28 @@ speculum.add({
       });
       setTimeout(function() {
         child.kill();
-        self.callback(null, exitCode, stdout, stderr);
+        var obj = {
+          error:null,
+          exitCode:exitCode, 
+          stdout:stdout,
+          stderr:stderr
+        };
+        return obj;
       }, 300);
     },
-    'there should be no errors':function(error, exitCode, stdout, stderr){
-      assert.isNull(error);
+    'there should be no errors':function(result){
+      console.log(arguments);
+      console.log(result);
+      assert.isNull(result.error);
     },
-    'the exit status code should be 0 (false for issues)':function(error, exitCode, stdout, stderr){
-      assert.equal(exitCode, 0);
+    'the exit status code should be 0 (false for issues)':function(result){
+      assert.equal(result.exitCode, 0);
     },
-    'stdout should not be an empty value':function(error, exitCode, stdout, stderr){
-      assert.notEqual(stdout, '');
+    'stdout should not be an empty value':function(result){
+      assert.notEqual(result.stdout, '');
     },
-    'stderr should be an empty value':function(error, exitCode, stdout, stderr){
-      assert.equal(stderr, '');
+    'stderr should be an empty value':function(result){
+      assert.equal(result.stderr, '');
     }
   }
 })
