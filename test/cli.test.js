@@ -5,8 +5,8 @@
 
 var fs = require('fs'),
     path = require('path'),
-    vows = require('vows'),
     assert = require('assert'),
+    speculum = require('speculum'),
     spawn = require('child_process').spawn;
 
 /*!
@@ -30,22 +30,22 @@ var args = [
 ];
 
 /*!
-  Vows
+  Speculum Tests
  */
 
-vows.describe('always vows setup & teardown')
+speculum.describe('always vows setup & teardown')/
 
 /*!
-  Vows Setup
+  Speculum Setup
  */
 
-.addBatch({
+speculum.add({
   'when creating file /test/app.js':{
-    topic:function(){
-      fs.writeFile(__dirname+'/app.js', testApp, 'utf8', this.callback);
+    result:function(){
+      return fs.writeFileSync(__dirname+'/app.js', testApp, 'utf8');
     },
-    'there should be no errors':function(error){
-      assert.equal(typeof(error), 'undefined');
+    'there should be no errors':function(result){
+      assert.equal(typeof(result), 'undefined');
     }
   }
 })
@@ -53,8 +53,8 @@ vows.describe('always vows setup & teardown')
 /*!
   Test always CLI
  */
-
-.addBatch({
+/*
+speculum.add({
   'when running `always start app.js`':{
     topic:function() {
       var self = this;
@@ -94,17 +94,18 @@ vows.describe('always vows setup & teardown')
 /*!
   Teardown
  */
-
-.addBatch({
+/*
+speculum.add({
   'when removing /test/app.js':{
     topic:function(){
-      fs.unlink(__dirname+'/app.js', this.callback);
+      return fs.unlinkSync(__dirname+'/app.js');
     },
     'there should be no errors':function(error) {
       assert.equal(typeof(error), 'undefined');
     }
   }
-})
-.export(module);
+});*/
+
+speculum.insert();
 
 /* EOF */
