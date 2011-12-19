@@ -42,13 +42,14 @@ speculum.describe('`always` `speculum` setup');
 speculum.add({
   'when creating file /test/app.js':{
     result:function(){
-      return fs.writeFileSync(__dirname+'/app.js', testApp, 'utf8');
+      fs.writeFileSync(__dirname+'/app.js', testApp, 'utf8');
+      return null;
     },
     'there should be no errors':function(error){
-      assert.equal(typeof(error), 'undefined');
+      assert.equal(error, null);
     }
   }
-})
+});
 
 /*!
   Test always CLI
