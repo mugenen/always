@@ -1,4 +1,19 @@
 
+0.4.1 / 2011-12-19 
+==================
+
+  * Merge branch 'develop'
+  * vows added
+  * remove tests while updating test suite
+  * travis
+  * only travis on master
+  * new tests
+  * new tests, bump speculum dep to 0.1.0
+  * rename topic
+  * new tests converting to `speculum
+  * removed vows, added speculum
+  * vows
+
 
 0.3.1 / 2011-12-18 
 ==================
