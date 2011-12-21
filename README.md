@@ -1,7 +1,7 @@
 
 # Always - [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/always.png)](http://travis-ci.org/edwardhotchkiss/always)
 
-> CLI & Daemon tool to run a NodeJS process always, restarting on file changes & crashes with piping to stderr/stdout or log files
+> CLI & Daemon tool to run a NodeJS process, restarting on file changes & crashes
 
 ## Installation
 
