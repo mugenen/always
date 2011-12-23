@@ -1,7 +1,7 @@
 
 # Always - [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/always.png)](http://travis-ci.org/edwardhotchkiss/always)
 
-> CLI & Daemon tool to run a NodeJS process, restarting on file changes & crashes
+> CLI Tool to run a NodeJS Process, Restarting on File Changes & Crashes
 
 ## Installation
 
