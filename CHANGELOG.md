@@ -1,4 +1,11 @@
 
+n.n.n / 2011-12-23 
+==================
+
+  * use 0.4.2 inside of the bin for --version
+  * description
+  * changelog
+
 0.4.1 / 2011-12-19 
 ==================
 
