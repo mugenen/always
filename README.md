@@ -15,14 +15,6 @@ $ [sudo] npm install always -g
 $ always app.js
 ```
 
-## Usage (Daemonized Process)
-
-```bash
-$ always start app.js
-$ always list
-$ => [always]  [0]  12.14.1/00:01:44 PM    app.js    00:00:01:23
-```
-
 ## Help
 
 ```bash
