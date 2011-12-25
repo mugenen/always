@@ -1,5 +1,14 @@
 
-n.n.n / 2011-12-23 
+0.4.3 / 2011-12-25 
+==================
+
+  * version bump
+  * update engine range: 0.4 - 0.8
+  * travis will test on 0.4.x
+  * only use license type and owner in readme file
+  * better description
+
+0.4.2 / 2011-12-23 
 ==================
 
   * use 0.4.2 inside of the bin for --version
