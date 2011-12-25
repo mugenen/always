@@ -20,7 +20,7 @@ var fs = require('fs'),
     file = null,
     app = null,
     cleaned,
-    version = 'v0.4.2'
+    version = 'v0.4.3'
 
 /*!
   Setup CLI
