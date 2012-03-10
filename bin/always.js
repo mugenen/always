@@ -247,19 +247,20 @@ function restart(){
 process.on('exit', function(code){
   kill();
 });
+if (process.platform.substr(0,3) !== 'win') {
+  // CTRL+C
+  process.on('SIGINT', function(){
+    logger('User killed process. Killing '+app.green, true);
+    kill();
+    process.exit(0);
+  });
 
-// CTRL+C
-process.on('SIGINT', function(){
-  logger('User killed process. Killing '+app.green, true);
-  kill();
-  process.exit(0);
-});
-
-process.on('SIGTERM', function(){
-  logger(app.green+' killed',true);
-  kill();
-  process.exit(0);
-});
+  process.on('SIGTERM', function(){
+    logger(app.green+' killed',true);
+    kill();
+    process.exit(0);
+  });
+}
 
 process.on('uncaughtException', function(error){
   logger(error.toString(), true);
