@@ -1,4 +1,12 @@
 
+n.n.n / 2012-03-11 
+==================
+
+  * [dist] version bump
+  * [deps] bump vows to 0.6.2
+  * [engine] prepare for 0.8.0, req 0.6.12+
+  * dont test 0.8 on travis
+
 0.4.3 / 2011-12-25 
 ==================
 
